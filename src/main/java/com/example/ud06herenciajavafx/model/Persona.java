@@ -27,8 +27,9 @@ public class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public boolean esCorrectoNIF(String nif){
+    public static String esCorrectoNIF(String nif){
         boolean nifCorrecto = false;
+        String nifValido;
         String letrasNif = "TRWAGMYFPDXBNJZSQVHLCKE";
         //Convierto el los 8 numeros en un int
         int soloNumeroNif = Integer.parseInt(nif.substring(0, 8));
@@ -41,7 +42,13 @@ public class Persona {
             //Si el if es correcto cambio la variable a true
             nifCorrecto = true;
         }
-        return nifCorrecto;
+        if (!nifCorrecto){
+            nifValido= "SinDNI";
+        }
+        else {
+            nifValido=nif;
+        }
+        return nifValido;
     }
 }
 
