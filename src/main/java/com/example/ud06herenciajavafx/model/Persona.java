@@ -27,6 +27,15 @@ public class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
     public static String esCorrectoNIF(String nif){
         boolean nifCorrecto = false;
         String nifValido;
