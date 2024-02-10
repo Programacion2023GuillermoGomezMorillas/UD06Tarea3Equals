@@ -36,9 +36,8 @@ public class Persona {
         this.edad = edad;
     }
 
-    public static String esCorrectoNIF(String nif){
+    public static boolean esCorrectoNIF(String nif){
         boolean nifCorrecto = false;
-        String nifValido;
         String letrasNif = "TRWAGMYFPDXBNJZSQVHLCKE";
         //Convierto el los 8 numeros en un int
         int soloNumeroNif = Integer.parseInt(nif.substring(0, 8));
@@ -51,13 +50,7 @@ public class Persona {
             //Si el if es correcto cambio la variable a true
             nifCorrecto = true;
         }
-        if (!nifCorrecto){
-            nifValido= "SinDNI";
-        }
-        else {
-            nifValido=nif;
-        }
-        return nifValido;
+        return nifCorrecto;
     }
 }
 
