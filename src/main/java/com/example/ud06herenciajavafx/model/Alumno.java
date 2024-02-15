@@ -6,9 +6,12 @@ public class Alumno extends Persona{
         super(dni, nombre, edad);
         this.curso = curso;
     }
-    public Curso getCuerso(){
+
+
+    public Curso getCurso() {
         return curso;
     }
+
     public void setCurso(Curso curso) {
         this.curso = curso;
     }

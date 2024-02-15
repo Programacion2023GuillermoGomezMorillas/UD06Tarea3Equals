@@ -3,7 +3,7 @@ package com.example.ud06herenciajavafx.controllers;
 import com.example.ud06herenciajavafx.model.Alumno;
 import com.example.ud06herenciajavafx.model.Curso;
 import com.example.ud06herenciajavafx.model.Persona;
-import javafx.application.Application;
+import com.example.ud06herenciajavafx.model.Profesor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,17 +11,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfesorController implements Initializable {
 
-    private ObservableList<Alumno> listaAlumnos;
+    private ObservableList<Profesor> listaProfesor;
 
     @FXML
     private TableColumn<Alumno, String> tcDni;
+
+    @FXML
+    private TextField tfSueldo;
+
+    @FXML
+    private TableColumn<Profesor, Integer> tcSueldo;
 
     @FXML
     private TableColumn<Alumno, String> tcNombre;
@@ -45,18 +50,18 @@ public class ProfesorController implements Initializable {
     private Button btGuardar;
 
     @FXML
-    private TableView<Alumno> tvAlumnos;
+    private TableView<Profesor> tvAlumnos;
 
     @FXML
     private TextField tfDni;
 
     @FXML
     void onClickGuardar(ActionEvent event) {
-        Alumno alumno = crearAlumno();
+        Profesor profesor = crearProfesor();
         //No hay errores
-        if (alumno!=null){
+        if (profesor!=null){
             //guardamos el alumno
-            listaAlumnos.add(alumno);
+            listaProfesor.add(profesor);
             //limpiamos la entrada
             limpiaDatos();
         }
@@ -64,7 +69,6 @@ public class ProfesorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        iniciaCbCurso();
         iniciaTableView();
     }
 
@@ -89,53 +93,54 @@ public class ProfesorController implements Initializable {
         alert.showAndWait();
     }
 
-    private Alumno crearAlumno() {
-        Alumno alumno = null;
+    private Profesor crearProfesor() {
+        Profesor profesor= null;
         String nombre = tfNombre.getText();
         //obtenemos el dni
         String dni = tfDni.getText();
-        //curso seleccionado
-        Curso curso = Curso.valueOf(cbCurso.getValue());
+        //sueldo seleccionado
+        int sueldo;
         //edad
         int edad;
-
         //comprobación de errores
         //DNI
         if (!Persona.esCorrectoNIF(dni)) {
             iniciaAlertaError("El DNI es incorrecto");
             tfDni.requestFocus();//ponemos el foco en el campo nombre
         } else if (nombre.isEmpty()) {
-            iniciaAlertaError("El alumno tiene que tener nombre");
+            iniciaAlertaError("El profesor tiene que tener nombre");
             tfNombre.requestFocus();
             //edad
         } else if (tfEdad.getText().isEmpty()) {
             tfEdad.requestFocus();
-            iniciaAlertaError("El Alumno tiene que tener edad");
+            iniciaAlertaError("El profesor tiene que tener edad");
         } else {
             try {//bloque que controla excepciones
                 //si no contiene un entero, provocará una excepción
                 edad = Integer.parseInt(tfEdad.getText());
-                //creamos el alumno
-                alumno = new Alumno(dni, nombre, edad, curso);
+                sueldo = Integer.parseInt(tfSueldo.getText());
+                //creamos el profesor
+                profesor = new Profesor(dni, nombre, edad, sueldo);
             } catch (NumberFormatException e) {
                 //si salta la excepción mandamos un mensaje
-                iniciaAlertaError("La edad tiene que ser un número entero");
+                iniciaAlertaError("La edad y el sueldo tienen que ser números enteros");
                 tfEdad.requestFocus();
             }
-        }
+
+            }
         //devuelve null si hay error
-        return alumno;
+        return profesor;
     }
     private void iniciaTableView(){
         // Inicializar la lista observable de alumnos
-        listaAlumnos = FXCollections.observableArrayList();
+        listaProfesor = FXCollections.observableArrayList();
         //asociamos las columnas con los datos indicando el nombre del campo de la clase
         tcNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         tcDni.setCellValueFactory(new PropertyValueFactory("dni"));
         tcEdad.setCellValueFactory(new PropertyValueFactory("edad"));
-        tcCurso.setCellValueFactory(new PropertyValueFactory("curso"));
+        tcSueldo.setCellValueFactory(new PropertyValueFactory("sueldo"));
         //Asociamos la lista a la tabla
-        tvAlumnos.setItems(listaAlumnos);
+        tvAlumnos.setItems(listaProfesor);
     }
     private void limpiaDatos(){
         tfEdad.clear();

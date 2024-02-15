@@ -10,10 +10,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.ud06herenciajavafx.controllers.AlumnoController">
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ud06herenciajavafx.controllers.ProfesorController">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="NEVER">
             <children>
@@ -54,7 +52,7 @@
                         <Insets left="65.0" />
                     </VBox.margin>
                 </TextField>
-                <Label alignment="CENTER" prefHeight="16.0" prefWidth="294.0" text="Curso">
+                <Label alignment="CENTER" prefHeight="16.0" prefWidth="294.0" text="Sueldo">
                     <font>
                         <Font size="11.0" />
                     </font>
@@ -62,11 +60,11 @@
                         <Insets top="20.0" />
                     </VBox.margin>
                 </Label>
-                <ComboBox fx:id="cbCurso" prefHeight="29.0" prefWidth="141.0" promptText="Curso">
-                    <VBox.margin>
-                        <Insets left="30.0" />
-                    </VBox.margin>
-                </ComboBox>
+            <TextField fx:id="tfSueldo" maxWidth="-Infinity" prefHeight="29.0" prefWidth="153.0" promptText="sueldo">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </TextField>
                 <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#onClickGuardar" text="Guardar">
                     <VBox.margin>
                         <Insets left="70.0" top="20.0" />
@@ -79,7 +77,7 @@
                 <TableColumn fx:id="tcDni" prefWidth="75.0" text="DNI" />
                 <TableColumn fx:id="tcNombre" prefWidth="190.0" text="NOMBRE" />
                 <TableColumn fx:id="tcEdad" minWidth="0.0" prefWidth="65.0" text="EDAD" />
-                <TableColumn fx:id="tcCurso" prefWidth="69.0" text="CURSO" />
+                <TableColumn fx:id="tcSueldo" prefWidth="69.0" text="SUELDO" />
             </columns>
         </TableView>
     </children>

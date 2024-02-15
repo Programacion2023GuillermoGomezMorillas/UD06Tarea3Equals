@@ -1,7 +1,7 @@
 package com.example.ud06herenciajavafx.model;
 
 public class Profesor extends Persona{
-    private int sueldo=0;
+    private int sueldo;
 
 
     public Profesor(String dni, String nombre, int edad, int sueldo) {
