@@ -114,7 +114,10 @@ public class ProfesorController implements Initializable {
         } else if (tfEdad.getText().isEmpty()) {
             tfEdad.requestFocus();
             iniciaAlertaError("El profesor tiene que tener edad");
-        } else {
+        } else if (tfSueldo.getText().isEmpty()) {
+            tfEdad.requestFocus();
+            iniciaAlertaError("El profesor tiene que tener sueldo");
+        }else {
             try {//bloque que controla excepciones
                 //si no contiene un entero, provocará una excepción
                 edad = Integer.parseInt(tfEdad.getText());
