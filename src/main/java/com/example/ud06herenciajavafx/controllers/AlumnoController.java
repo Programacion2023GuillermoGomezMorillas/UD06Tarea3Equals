@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AlumnoController implements Initializable {
+    public class AlumnoController implements Initializable {
 
         private ObservableList<Alumno> listaAlumnos;
 
@@ -64,8 +64,7 @@ public class AlumnoController implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-                iniciaCbCurso();
-                iniciaTableView();
+
         }
 
         private void iniciaCbCurso() {
@@ -128,7 +127,7 @@ public class AlumnoController implements Initializable {
         }
         private void iniciaTableView(){
                 // Inicializar la lista observable de alumnos
-                listaAlumnos = FXCollections.observableArrayList();
+                // listaAlumnos = FXCollections.observableArrayList();
                 //asociamos las columnas con los datos indicando el nombre del campo de la clase
                 tcNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
                 tcDni.setCellValueFactory(new PropertyValueFactory("dni"));
@@ -142,5 +141,13 @@ public class AlumnoController implements Initializable {
                 tfNombre.clear();
                 tfDni.clear();
         }
+        public void initialize (ObservableList<Alumno> listaAlumnos){
+                //inicia comboBox
+                iniciaCbCurso();
+                //asignamos la lista
+                this.listaAlumnos=listaAlumnos;
+                //iniciamos la tabala
+                iniciaTableView();
+        }
 
-}
+    }
