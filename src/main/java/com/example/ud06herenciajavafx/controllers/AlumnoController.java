@@ -52,6 +52,15 @@ public class AlumnoController implements Initializable {
     private TextField tfDni;
 
     @FXML
+    void onClickBorrar(ActionEvent event) {
+        Alumno alumno=new Alumno(tfDni.getText(),"", 0, Curso.DAM);
+        System.out.println(alumno);
+        System.out.println(tfDni.getText());
+        System.out.println(listaAlumnos.indexOf(alumno));
+        listaAlumnos.remove(alumno);;
+    }
+
+    @FXML
     void onClickTvAlumnos(MouseEvent event) {
         //buscamos el alumno seleccionado
         Alumno alumno = tvAlumnos.getSelectionModel().getSelectedItem();
@@ -71,7 +80,7 @@ public class AlumnoController implements Initializable {
         //No hay errores
         if (alumno != null) {
             //Si existe no hacemos nada
-            if (listaAlumnos.contains(alumno)) {
+            if (!listaAlumnos.contains(alumno)) {
                 //guardamos el alumno
                 listaAlumnos.add(alumno);
                 //limpiamos la entrada
