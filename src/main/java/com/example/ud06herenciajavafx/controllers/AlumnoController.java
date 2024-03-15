@@ -76,8 +76,24 @@ public class AlumnoController implements Initializable {
                 listaAlumnos.add(alumno);
                 //limpiamos la entrada
                 limpiaDatos();
+            } else {//si existe, le preguntamos si quiere sustituirlo
+                // Crear una alerta con tipo de alerta CONFIRMATION
+                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                alerta.setTitle("Confirmación");
+                alerta.setHeaderText("Quieres modificar el alumno con DNI \n" + alumno.getDni());
+                // Configurar los botones predeterminados (Sí y No)
+                alerta.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+                // Mostrar la alerta y esperar la respuesta del usuario
+                alerta.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.YES) {
+                        // System.out.println("Usuario seleccionó 'Sí'");
+                        // Aquí puedes poner el código que se ejecutará si el usuario selecciona "Sí"
+                        sustituyeAlumno(alumno);
+                    }
+                });
             }
         }
+
     }
 
     @Override
@@ -169,6 +185,15 @@ public class AlumnoController implements Initializable {
         this.listaAlumnos = listaAlumnos;
         //iniciamos la tabala
         iniciaTableView();
+    }
+
+    private void sustituyeAlumno(Alumno alumno) {
+        //buscamos la posición del alumno
+        int indice = listaAlumnos.indexOf(alumno);
+        //si existe en la lista
+        if (indice != -1)
+            //sustituimos el alumno
+            listaAlumnos.set(indice, alumno);
     }
 
 }
